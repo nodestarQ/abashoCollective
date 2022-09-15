@@ -22,9 +22,11 @@ contract LostAstronauts is ERC721A, Ownable {
   // REGULAR MINT VARIABLES //
   bool public riftOpen; //MINT START BOOL
   uint256 public constant ASTRONAUTS = 250; //MAX SUPPLY
+  uint256 public constant WALLETLIMIT = 5; //WALLET LIMIT
   uint256 public constant REGULAR_COST = 0.04 ether; //MINT PRICE FOR REGULAR MINTER
   uint256 randOffset; //RANDOM OFFSET VALUE
   string private baseURI; //TOKENURI
+  mapping(address => uint) public addressClaimed; //KEEP TRACK OF CLAIMED LOST ASTRONAUTS
 
   // ABASHO COLLECTIVE MINT//
   bool public riftOpenAbasho; //ABASHO MINT START BOOL
@@ -61,7 +63,8 @@ contract LostAstronauts is ERC721A, Ownable {
     require(abasho.ownerOf(_abashoId) == _msgSender(), "NOBASHO DETECTED");  //CHECK IF ABASHO OWNER
     require(!abashoClaimed[_abashoId], "ABASHO ID HAS ALREADY CLAIMED");  //CHECK IF ABASHO HAS CLAIMED ALREADY
     abashoClaimed[_abashoId] = true;  //SET CLAIMED VAR
-
+    
+    addressClaimed[_msgSender()] += 1; // ADD TO WALLET LIMIT COUNTER
     _safeMint(msg.sender, 1); // PULL LOST ASTRONAUT OUT OF THE MERGE EVENT HORIZON
   }
 
@@ -70,8 +73,11 @@ contract LostAstronauts is ERC721A, Ownable {
     uint256 total = totalSupply();
     require(riftOpen, "MERGE RIFT NOT EMITTING"); //CHECK MINT STARTED
     require(total + 1 <= ASTRONAUTS, "ALL 250 LOST ASTRONAUTS HAVE BEEN RECOVERED"); //CHECK IF MINTED OUT
+    require(addressClaimed[_msgSender()] + 1 <= WALLETLIMIT, "YOU CAN'T RECOVER MORE");
     require(REGULAR_COST <= msg.value, "NOT ENOUGH ETH"); //CHECK IF ENOUGH ETH PAID
 
+    
+    addressClaimed[_msgSender()] += 1; // ADD TO WALLET LIMIT COUNTER
     _safeMint(msg.sender, 1); // PULL LOST ASTRONAUT OUT OF THE MERGE EVENT HORIZON
   }
 
