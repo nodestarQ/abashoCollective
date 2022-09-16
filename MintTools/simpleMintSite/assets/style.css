@@ -1,0 +1,10 @@
+@font-face {
+  font-family: upheavt;
+  src: url(font/upheavtt.ttf);
+}
+
+* {
+  font-family: upheavt;
+  color: black;
+  font-size: 0.9rem;
+}

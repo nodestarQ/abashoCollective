@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>MINT BUTTONS BOILERPLATE</title>
+    <link rel="stylesheet" href="assets/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/style.css">
+    <script src="js/minttool.js" type="module"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+  </head>
+  <body>
+    <div class="d-grid gap-2 col-6 mx-auto">
+        <h1 id="mintAmount" class="text-center visually-hidden">0/250 Minted</h1>
+        <button type="button" id="ConnectWalletBtn" class="btn btn-primary" onclick="walletConnected()">CONNECT WALLET</button>
+        <button type="button" id="regularMintBtn" class="btn btn-primary disabled" onclick="mintRegular()">MINT</button>
+            <div class="input-group">
+                <input type="text" class="form-control myinput text-start" id="abashoID" placeholder="ABASHO #">
+                <button type="button" class="btn btn-primary disabled" id="abashoMintBtn" onclick="mintAbasho()">ABASHO MINT</button>
+            </div>
+      </div>
+  </body>
+</html>
