@@ -1,0 +1,15 @@
+{
+  "name": "hugbasho",
+  "version": "1.0.0",
+  "description": "abasho twitter bot",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "nodestarQ",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "twitter-api-v2": "^1.13.0"
+  }
+}
